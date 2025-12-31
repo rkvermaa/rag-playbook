@@ -36,17 +36,25 @@ def build_rag_pipeline(pdf_path: str):
 
 def ask(retriever, question: str):
     """Ask a question and get an answer."""
-    
-    # Retrieve relevant chunks
-    results = retriever.retrieve(question, top_k=3)
-    
-    print("\n📚 Retrieved chunks:")
-    for i, r in enumerate(results):
-        print(f"  [{i+1}] (score: {r['score']:.3f}) {r['text'][:100]}...")
-    
+
+    # CRAG: Evaluate quality and retrieve
+    crag_result = retriever.retrieve_with_crag(question, top_k=5)
+
+    print(f"\n📊 Source: {crag_result['source']}")
+    print(f"✅ Quality: {crag_result['quality']}")
+
+    # Get the actual chunks
+    chunks = crag_result.get('results', [])
+
+    if chunks:
+        print("\n📚 Retrieved chunks:")
+        for i, r in enumerate(chunks[:3]):  # Show top 3
+            if isinstance(r, dict):
+                print(f"  [{i+1}] (score: {r.get('score', 0):.3f}) {r.get('text', '')[:100]}...")
+
     # Generate answer
-    answer = generate_response(question, results)
-    
+    answer = generate_response(question, chunks)
+
     return answer
 
 # Run it

@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent.parent))
-from src.chunking import load_pdf, chunk_text
+from src.chunking import load_pdf, semantic_chunking
 from src.embedding import get_embeddings
 from src.vector_store import SimpleVectorStore
 from src.retriever import Retriever
@@ -11,11 +11,10 @@ from src.generator import generate_response
 
 def build_rag_pipeline(pdf_path: str):
     """Build the complete RAG pipeline."""
-    
     # Step 1: Load and chunk
     print("📄 Loading PDF...")
     text = load_pdf(pdf_path)
-    chunks = chunk_text(text)
+    chunks = semantic_chunking(text, threshold=0.6)
     print(f"✅ Created {len(chunks)} chunks")
     
     # Step 2: Generate embeddings

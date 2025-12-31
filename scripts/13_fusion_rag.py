@@ -5,7 +5,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.chunking import load_pdf, chunk_text
 from src.embedding import get_embeddings
-from src.vector_store import SimpleVectorStore
+from src.vector_store import FusionVectorStore
 from src.retriever import Retriever
 from src.generator import generate_response
 
@@ -25,7 +25,7 @@ def build_rag_pipeline(pdf_path: str):
     
     # Step 3: Store in vector store
     print("🗄️ Building vector store...")
-    store = SimpleVectorStore()
+    store = FusionVectorStore()
     store.add_batch(chunks, embeddings)
     print("✅ Vector store ready")
     
@@ -38,8 +38,7 @@ def ask(retriever, question: str):
     """Ask a question and get an answer."""
     
     # Retrieve relevant chunks
-    results = retriever.retrieve(question, top_k=3)
-    
+    results = retriever.retrieve_fusion(question, top_k=3)    
     print("\n📚 Retrieved chunks:")
     for i, r in enumerate(results):
         print(f"  [{i+1}] (score: {r['score']:.3f}) {r['text'][:100]}...")

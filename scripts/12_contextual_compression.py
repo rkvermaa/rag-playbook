@@ -38,7 +38,7 @@ def ask(retriever, question: str):
     """Ask a question and get an answer."""
     
     # Retrieve relevant chunks
-    results = retriever.retrieve(question, top_k=3)
+    results = retriever.retrieve_compressed(question, top_k=5)
     
     print("\n📚 Retrieved chunks:")
     for i, r in enumerate(results):

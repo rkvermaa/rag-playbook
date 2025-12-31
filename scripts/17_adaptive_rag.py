@@ -6,7 +6,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from src.chunking import load_pdf, chunk_text
 from src.embedding import get_embeddings
 from src.vector_store import SimpleVectorStore
-from src.retriever import Retriever
+from src.retriever import Retriever, adaptive_rag
 from src.generator import generate_response
 
 def build_rag_pipeline(pdf_path: str):
@@ -36,18 +36,13 @@ def build_rag_pipeline(pdf_path: str):
 
 def ask(retriever, question: str):
     """Ask a question and get an answer."""
-    
-    # Retrieve relevant chunks
-    results = retriever.retrieve(question, top_k=3)
-    
-    print("\n📚 Retrieved chunks:")
-    for i, r in enumerate(results):
-        print(f"  [{i+1}] (score: {r['score']:.3f}) {r['text'][:100]}...")
-    
-    # Generate answer
-    answer = generate_response(question, results)
-    
-    return answer
+
+    # Use adaptive RAG to get answer
+    result = adaptive_rag(question, retriever)
+
+    print(f"\n🎯 Strategy used: {result['strategy']}")
+
+    return result['answer']
 
 # Run it
 if __name__ == "__main__":

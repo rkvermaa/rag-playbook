@@ -1,0 +1,32 @@
+[
+  {
+    "question": "What is the title of the paper by Zhouhan Lin et al. published in 2017?",
+    "answer": "A structured self-attentive sentence embedding",
+    "difficulty": "easy",
+    "chunk_source": "[22] Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen\nZhou, and Yoshua..."
+  },
+  {
+    "question": "What is the purpose of using a sinusoidal function for positional encoding in the model, and what potential benefit does it offer over learned positional embeddings?",
+    "answer": "The sinusoidal function allows the model to easily learn to attend by relative positions and may enable it to extrapolate to sequence lengths longer than those encountered during training, as it can be represented as a linear function of the positional encoding for any fixed offset.",
+    "difficulty": "medium",
+    "chunk_source": "PE(pos,2i+1) = cos(pos/100002i/dmodel)\nwhere pos is the position and i is the dimension. That is, ea..."
+  },
+  {
+    "question": "How can local, restricted attention mechanisms be utilized to efficiently handle large inputs and outputs such as images, audio, and video in the context of extending the Transformer model?",
+    "answer": "Local, restricted attention mechanisms can be utilized to efficiently handle large inputs and outputs such as images, audio, and video by limiting the attention scope to a subset of the input or output elements, thereby reducing computational complexity and allowing for more parallelization, which is particularly important for multimodal data that often has a large number of input and output elements.",
+    "difficulty": "hard",
+    "chunk_source": "plan to extend the Transformer to problems involving input and output modalities other than text and..."
+  },
+  {
+    "question": "How do the long short-term memory models proposed by Sepp Hochreiter and Jürgen Schmidhuber address the issue of learning long-term dependencies in recurrent neural networks?",
+    "answer": "The long short-term memory models address the issue of learning long-term dependencies by introducing memory cells that can store information for long periods of time, and gates that control the flow of information into and out of these cells, allowing the model to learn complex patterns and relationships in data.",
+    "difficulty": "hard",
+    "chunk_source": "[12] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in\nrecurr..."
+  },
+  {
+    "question": "What can be inferred about the compatibility function used in the model based on the observation that reducing the attention key size dk hurts model quality?",
+    "answer": "The observation suggests that determining compatibility is not easy and that a more sophisticated compatibility function than dot product may be beneficial, as the current dot product function may not be effectively capturing the relationships between the attention keys.",
+    "difficulty": "hard",
+    "chunk_source": "keeping the amount of computation constant, as described in Section 3.2.2. While single-head\nattenti..."
+  }
+]

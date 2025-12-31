@@ -38,8 +38,8 @@ def ask(retriever, question: str):
     """Ask a question and get an answer."""
     
     # Retrieve relevant chunks
-    results = retriever.retrieve(question, top_k=3)
-    
+    results = retriever.retrieve_with_context(question, top_k=3)
+     
     print("\n📚 Retrieved chunks:")
     for i, r in enumerate(results):
         print(f"  [{i+1}] (score: {r['score']:.3f}) {r['text'][:100]}...")

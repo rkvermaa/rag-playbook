@@ -7,7 +7,7 @@ from src.chunking import load_pdf, chunk_text
 from src.embedding import get_embeddings
 from src.vector_store import SimpleVectorStore
 from src.retriever import Retriever
-from src.generator import generate_response
+from src.generator import self_rag_generate , generate_response
 
 def build_rag_pipeline(pdf_path: str):
     """Build the complete RAG pipeline."""
@@ -36,25 +36,30 @@ def build_rag_pipeline(pdf_path: str):
 
 def ask(retriever, question: str):
     """Ask a question and get an answer."""
-    
-    # Retrieve relevant chunks
-    results = retriever.retrieve(question, top_k=3)
-    
-    print("\n📚 Retrieved chunks:")
-    for i, r in enumerate(results):
-        print(f"  [{i+1}] (score: {r['score']:.3f}) {r['text'][:100]}...")
-    
-    # Generate answer
-    answer = generate_response(question, results)
-    
-    return answer
+
+    # Self-RAG: critique, retrieve, generate
+    results = self_rag_generate(question, retriever)
+
+    print(f"\n✅ Critique: {results['critique']}")
+    print(f"📊 Retrieved: {results['retrieved']}")
+
+    # Show retrieved chunks if any
+    if results['retrieved']:
+        print("\n📚 Retrieved chunks:")
+        retrieved_chunks = results.get('chunks', [])
+        for i, r in enumerate(retrieved_chunks):
+            if isinstance(r, dict):
+                print(f"  [{i+1}] (score: {r.get('score', 0):.3f}) {r.get('text', '')[:100]}...")
+
+    print(f"\n💡 Answer: {results['answer']}")
+
+    return results['answer']
 
 # Run it
 if __name__ == "__main__":
     retriever = build_rag_pipeline("data/Attention Is All You Need.pdf")
-    
+
     question = "How is Scaled Dot-Product Attention calculated?"
     print(f"\n❓ Question: {question}")
-    
+
     answer = ask(retriever, question)
-    print(f"\n💡 Answer: {answer}")

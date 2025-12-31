@@ -1,0 +1,116 @@
+[
+  {
+    "technique": "01. Simple RAG",
+    "faithfulness": 0.9199999999999999,
+    "answer_relevancy": 0.74,
+    "context_relevancy": 0.7
+  },
+  {
+    "technique": "02. Semantic Chunking",
+    "faithfulness": 0.9,
+    "answer_relevancy": 0.8,
+    "context_relevancy": 0.56
+  },
+  {
+    "technique": "03. Recursive Chunking",
+    "faithfulness": 0.9400000000000001,
+    "answer_relevancy": 0.7,
+    "context_relevancy": 0.66
+  },
+  {
+    "technique": "04. Chunk Size (1200)",
+    "faithfulness": 0.96,
+    "answer_relevancy": 0.56,
+    "context_relevancy": 0.32
+  },
+  {
+    "technique": "05. Proposition Chunking",
+    "faithfulness": 0.76,
+    "answer_relevancy": 0.2,
+    "context_relevancy": 0.78
+  },
+  {
+    "technique": "06. Context-Enriched RAG",
+    "faithfulness": 0.76,
+    "answer_relevancy": 0.68,
+    "context_relevancy": 0.22000000000000003
+  },
+  {
+    "technique": "07. Contextual Chunk Headers",
+    "faithfulness": 0.9400000000000001,
+    "answer_relevancy": 0.7,
+    "context_relevancy": 0.68
+  },
+  {
+    "technique": "08. Document Augmentation",
+    "faithfulness": 0.9,
+    "answer_relevancy": 0.76,
+    "context_relevancy": 0.64
+  },
+  {
+    "technique": "09. Query Transform (baseline)",
+    "faithfulness": 0.9,
+    "answer_relevancy": 0.76,
+    "context_relevancy": 0.64
+  },
+  {
+    "technique": "10. Reranker",
+    "faithfulness": 0.82,
+    "answer_relevancy": 0.62,
+    "context_relevancy": 0.8
+  },
+  {
+    "technique": "11. RSE",
+    "faithfulness": 0.9800000000000001,
+    "answer_relevancy": 0.2,
+    "context_relevancy": 0.24
+  },
+  {
+    "technique": "12. Contextual Compression",
+    "faithfulness": 0.9199999999999999,
+    "answer_relevancy": 0.52,
+    "context_relevancy": 0.7
+  },
+  {
+    "technique": "13. Fusion RAG",
+    "faithfulness": 0.9,
+    "answer_relevancy": 0.66,
+    "context_relevancy": 0.66
+  },
+  {
+    "technique": "14. HyDE",
+    "faithfulness": 0.6599999999999999,
+    "answer_relevancy": 0.5,
+    "context_relevancy": 0.42000000000000004
+  },
+  {
+    "technique": "15. Self-RAG (baseline)",
+    "faithfulness": 0.9199999999999999,
+    "answer_relevancy": 0.68,
+    "context_relevancy": 0.68
+  },
+  {
+    "technique": "16. CRAG",
+    "faithfulness": 0.9,
+    "answer_relevancy": 0.72,
+    "context_relevancy": 0.9400000000000001
+  },
+  {
+    "technique": "17. Adaptive RAG",
+    "faithfulness": 0.5,
+    "answer_relevancy": 0.5800000000000001,
+    "context_relevancy": 0.5
+  },
+  {
+    "technique": "18. Graph RAG",
+    "faithfulness": 0.8,
+    "answer_relevancy": 0.0,
+    "context_relevancy": 0.32
+  },
+  {
+    "technique": "19. Hierarchical RAG",
+    "faithfulness": 0.76,
+    "answer_relevancy": 0.0,
+    "context_relevancy": 0.34
+  }
+]
